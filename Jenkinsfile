@@ -1,5 +1,5 @@
 node {
-    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'awsAccessKey']]) {
+    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'awsAccessCreds']]) {
     // Mark the code checkout 'Checkout'....
     stage 'Checkout'
  

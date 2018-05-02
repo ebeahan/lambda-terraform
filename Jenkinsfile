@@ -22,7 +22,8 @@ node {
             if (fileExists("status")) {
                 sh "rm status"
             }
-            sh "terraform get"
+            sh "terraform init -input=false"
+            // sh "terraform get"
             sh "set +e; terraform plan -out=plan.out -detailed-exitcode; echo \$? &gt; status"
             def exitCode = readFile('status').trim()
             def apply = false

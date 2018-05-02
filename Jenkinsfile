@@ -22,7 +22,7 @@ node {
             if (fileExists("status")) {
                 sh "rm status"
             }
-            sh "terraform init -input=false"
+            sh "terraform init -input=false -force-copy -get=true"
             // sh "terraform get"
             sh "set +e; terraform plan -out=plan.out -var 'access_key=$AWS_ACCESS_KEY_ID' -var \
                 'secret_key=$AWS_SECRET_ACCESS_KEY' -input=false -detailed-exitcode; echo \$? > status"

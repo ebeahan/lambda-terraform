@@ -9,6 +9,7 @@ node {
     // Get the Terraform tool.
     def tfHome = tool name: 'Terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
     env.PATH = "${tfHome}:${env.PATH}"
+    env.TF_IN_AUTOMATION = "true"
     wrap([$class: 'AnsiColorBuildWrapper', colorMapName: 'xterm']) {
  
             // Mark the code build 'plan'....

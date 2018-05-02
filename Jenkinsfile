@@ -25,8 +25,8 @@ node {
             sh "terraform init -input=false -force-copy -get=true"
             // sh "terraform get"
             sh "set +e; terraform plan -out=plan.out -var 'access_key=$AWS_ACCESS_KEY_ID' -var \
-                'secret_key=$AWS_SECRET_ACCESS_KEY' -var-file=./vars/ebeahan.tfvars -input=false \
-                -detailed-exitcode; echo \$? > status"
+                'secret_key=$AWS_SECRET_ACCESS_KEY' -var 'tf_s3_bucket=ebeahan-jenkins-terraform' -input=false \
+                -var 'master_state_file=jenkins/terraform.tfstate' -detailed-exitcode; echo \$? > status"
             def exitCode = readFile('status').trim()
             def apply = false
             echo "Terraform Plan Exit Code: ${exitCode}"

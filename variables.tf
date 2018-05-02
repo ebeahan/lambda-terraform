@@ -3,8 +3,6 @@ variable "aws_region" {
   default     = "us-west-1"
 }
 
-variable "aws_account" {}
-
 variable "tf_s3_bucket" {}
 
 variable "master_state_file" {}

@@ -25,7 +25,7 @@ node {
             sh "terraform init -input=false"
             // sh "terraform get"
             sh "set +e; terraform plan -out=plan.out -var 'access_key=$AWS_ACCESS_KEY_ID' -var \
-                'secret_key=$AWS_SECRET_ACCESS_KEY' -detailed-exitcode; echo \$? > status"
+                'secret_key=$AWS_SECRET_ACCESS_KEY' -input=false -detailed-exitcode; echo \$? > status"
             def exitCode = readFile('status').trim()
             def apply = false
             echo "Terraform Plan Exit Code: ${exitCode}"
@@ -55,7 +55,7 @@ node {
                 if (fileExists("status.apply")) {
                     sh "rm status.apply"
                 }
-                sh 'set +e; terraform apply plan.out; echo \$? > status.apply'
+                sh 'set +e; terraform apply -input=false plan.out; echo \$? > status.apply'
                 def applyExitCode = readFile('status.apply').trim()
                 if (applyExitCode == "0") {
                     slackSend channel: '#ci', color: 'good', message: "Changes Applied ${env.JOB_NAME} - ${env.BUILD_NUMBER} ()"    

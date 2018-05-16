@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    PLAY_ACTIVATOR = tool name: 'terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
+    PLAY_ACTIVATOR = tool name: 'Terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
   }
 
   stages {

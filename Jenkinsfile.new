@@ -1,0 +1,15 @@
+pipeline {
+  agent any
+
+  environment {
+    PLAY_ACTIVATOR = tool_name: 'terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
+  }
+
+  stages {
+    stage('Plan') {
+      steps {
+        sh "terraform --version"
+      }
+    }
+  }
+}

@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Plan') {
       steps {
-        sh "terraform --version"
+        sh "${PLAY_ACTIVATOR}/terraform --version"
       }
     }
   }
